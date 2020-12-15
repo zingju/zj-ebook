@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <span class="icon-add"></span>
+    <span class="test">ABCD</span>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import { mapGetters } from "vuex";
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  computed: {
+    ...mapGetters(["test"]),
+  },
+  mounted() {
+    this.$store.dispatch("setTest", 11).then(() => {
+      console.log(this.test);
+    });
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/css/global.scss";
+.icon-add {
+  font-size: px2rem(30);
+  color: red;
+}
+.test {
+  font-family: "Days One";
+  font-size: px2rem(30);
+}
+</style>
